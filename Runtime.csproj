@@ -63,12 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Runtime\CommentBlockData.cs" />
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Runtime\DialogueContainer.cs" />
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Runtime\DialogueNodeData.cs" />
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Runtime\ExposedProperty.cs" />
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Runtime\NodeLinkData.cs" />
-    <None Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Runtime\Subtegral.DialogueSystem.Runtime.asmdef" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Runtime\CommentBlockData.cs" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Runtime\DialogueContainer.cs" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Runtime\DialogueNodeData.cs" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Runtime\ExposedProperty.cs" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Runtime\NodeLinkData.cs" />
+    <None Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Runtime\Subtegral.DialogueSystem.Runtime.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.1f1/2019.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

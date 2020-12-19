@@ -63,14 +63,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Editor\Graph\NodeSearchWindow.cs" />
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Editor\Graph\StoryGraph.cs" />
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Editor\Graph\StoryGraphView.cs" />
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Editor\GraphSaveUtility.cs" />
-    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Editor\Nodes\DialogueNode.cs" />
-    <None Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Editor\Resources\NarrativeGraph.uss" />
-    <None Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Editor\Resources\Node.uss" />
-    <None Include="Assets\Script\NodeBasedDialogueSystem-master\com.subtegral.dialoguesystem\Editor\Subtegral.DialogueSystem.Editor.asmdef" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Editor\Graph\NodeSearchWindow.cs" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Editor\Graph\StoryGraph.cs" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Editor\Graph\StoryGraphView.cs" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Editor\GraphSaveUtility.cs" />
+    <Compile Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Editor\Nodes\DialogueNode.cs" />
+    <None Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Editor\Resources\NarrativeGraph.uss" />
+    <None Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Editor\Resources\Node.uss" />
+    <None Include="Assets\Script\DialogueComplete\Sistema1\com.subtegral.dialoguesystem\Editor\Subtegral.DialogueSystem.Editor.asmdef" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.1f1/2019.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
