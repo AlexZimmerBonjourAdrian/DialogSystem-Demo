@@ -50,8 +50,24 @@ public class CDialogueGraphView : GraphView
         node.SetPosition(new Rect(x: 100, y: 200, width: 100, height: 150));
         return node;
     }
-    
-   public void CreateNode(string nodeName)
+
+    public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
+    {
+        var compatiblePorts = new List<Port>();
+        ports.ForEach(funcCall: (port) =>
+        {
+            
+            var portView = port;
+            if(startPort != port && startPort.node != port.node)
+            {
+                compatiblePorts.Add(port);
+            }
+        });
+
+            return compatiblePorts;
+    }
+
+    public void CreateNode(string nodeName)
     {
         AddElement(CreateDialogueNode(nodeName));
     }
