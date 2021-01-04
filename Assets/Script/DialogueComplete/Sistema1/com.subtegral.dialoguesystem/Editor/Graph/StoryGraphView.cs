@@ -49,13 +49,14 @@ namespace Subtegral.DialogueSystem.Editor
                 SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
         }
 
-
+        /*
         public void ClearBlackBoardAndExposedProperties()
         {
             ExposedProperties.Clear();
             Blackboard.Clear();
         }
-
+        */
+        /*
         public Group CreateCommentBlock(Rect rect, CommentBlockData commentBlockData = null)
         {
             if(commentBlockData==null)
@@ -69,7 +70,7 @@ namespace Subtegral.DialogueSystem.Editor
             group.SetPosition(rect);
             return group;
         }
-
+        */
         public void AddPropertyToBlackBoard(ExposedProperty property, bool loadMode = false)
         {
             var localPropertyName = property.PropertyName;
@@ -188,7 +189,7 @@ namespace Subtegral.DialogueSystem.Editor
             nodeCache.RefreshPorts();
             nodeCache.RefreshExpandedState();
         }
-
+        
         private void RemovePort(Node node, Port socket)
         {
             var targetEdge = edges.ToList()
@@ -204,7 +205,8 @@ namespace Subtegral.DialogueSystem.Editor
             node.RefreshPorts();
             node.RefreshExpandedState();
         }
-
+        
+        
         private Port GetPortInstance(DialogueNode node, Direction nodeDirection,
             Port.Capacity capacity = Port.Capacity.Single)
         {
@@ -233,5 +235,6 @@ namespace Subtegral.DialogueSystem.Editor
             nodeCache.SetPosition(new Rect(100, 200, 100, 150));
             return nodeCache;
         }
+        
     }
 }
