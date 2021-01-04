@@ -890,22 +890,6 @@
       <Project>{A0F5494A-6095-056C-AEF7-F0415769BFA9}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
-    <ProjectReference Include="Runtime.csproj">
-      <Project>{08152396-93F3-82C1-865D-FFF4D789D10D}</Project>
-      <Name>Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="Editor.csproj">
-      <Project>{9867257B-5924-F652-AE46-27EA365B31B1}</Project>
-      <Name>Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="XNode.csproj">
-      <Project>{A5D3A215-60BA-ACED-E9FA-829DA75C14D6}</Project>
-      <Name>XNode</Name>
-    </ProjectReference>
-    <ProjectReference Include="XNodeEditor.csproj">
-      <Project>{451AAED7-9C6B-0FB2-02F0-C1FF4891B4A4}</Project>
-      <Name>XNodeEditor</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

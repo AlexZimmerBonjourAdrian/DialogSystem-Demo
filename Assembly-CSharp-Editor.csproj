@@ -63,49 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Dialog-Node-Editor-master\Assets\Editor\DialogNodeEditor\Core\Connection.cs" />
-    <Compile Include="Assets\Script\Dialog-Node-Editor-master\Assets\Editor\DialogNodeEditor\Core\ConnectionPoint.cs" />
-    <Compile Include="Assets\Script\Dialog-Node-Editor-master\Assets\Editor\DialogNodeEditor\Core\DialogNodeEditor.cs" />
-    <Compile Include="Assets\Script\Dialog-Node-Editor-master\Assets\Editor\DialogNodeEditor\Core\EditorSaveObject.cs" />
-    <Compile Include="Assets\Script\Dialog-Node-Editor-master\Assets\Editor\DialogNodeEditor\Core\Node.cs" />
-    <Compile Include="Assets\Script\Dialog-Node-Editor-master\Assets\Editor\DialogNodeEditor\Core\Toolbar.cs" />
-    <Compile Include="Assets\Script\Dialog-Node-Editor-master\Assets\Editor\DialogNodeEditor\Nodes\DialogNode.cs" />
-    <Compile Include="Assets\Script\Dialog-Node-Editor-master\Assets\Editor\DialogNodeEditor\Nodes\EndNode.cs" />
-    <Compile Include="Assets\Script\Dialog-Node-Editor-master\Assets\Editor\DialogNodeEditor\Nodes\StartNode.cs" />
-    <Compile Include="Assets\Script\Dialogue-master\Dialogue-master\Scripts\Editor\CharacterInfoDrawer.cs" />
-    <Compile Include="Assets\Script\Dialogue-master\Dialogue-master\Scripts\Editor\DialogueGraphEditor.cs" />
-    <Compile Include="Assets\Script\Dialogue-master\Dialogue-master\Scripts\Nodes\Editor\BranchEditor.cs" />
-    <Compile Include="Assets\Script\Dialogue-master\Dialogue-master\Scripts\Nodes\Editor\ChatEditor.cs" />
-    <Compile Include="Assets\Script\Dialogue-master\Dialogue-master\Scripts\Nodes\Editor\EventEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\AntialiasingEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\BloomAndFlaresEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\BloomEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\CameraMotionBlurEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\ColorCorrectionCurvesEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\ColorCorrectionLookupEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\CreaseShadingEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\DepthOfFieldDeprecatedEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\DepthOfFieldEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\EdgeDetectionEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\NoiseAndGrainEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\SunShaftsEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\TonemappingEditor.cs" />
-    <Compile Include="Assets\Script\DialogueComplete\Systema3\Assets\Environment\Editor\ImageEffects\VignetteAndChromaticAberrationEditor.cs" />
-    <Compile Include="Assets\Script\SimpleNodeEditor-master\Assets\Nodes\Editor\NodeEditor.cs" />
-    <Compile Include="Assets\Script\SimpleNodeEditor-master\Assets\Nodes\Editor\NodeGraphInspector.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\ActionBase.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\ActionManager.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\ActionTriggerSystem.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\CreateConnection.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\CreateNodeAction.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\DeleteNodeAction.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\DragNode.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\MultiStageAction.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\RemoveConnection.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\Actions\UndoableAction.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\NodeEditor.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\NodeEditorWindow.cs" />
-    <Compile Include="Assets\Script\UnityNodeEditorBase-master\UNEB_Project_Root\Assets\UNEB\Editor\SaveManager.cs" />
+    <Compile Include="Assets\Script\DialogueEditor\Editor\CDialogueGraph.cs" />
+    <Compile Include="Assets\Script\DialogueEditor\Editor\CDialogueGraphView.cs" />
     <Reference Include="UnityEngine">
       <HintPath>F:/unity/Editor/2019.4.1f1/2019.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -767,22 +726,6 @@
     <ProjectReference Include="Assembly-CSharp-Editor-firstpass.csproj">
       <Project>{BC52EB01-BCFB-82C7-75A0-4DA85C09D1DF}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
-    </ProjectReference>
-    <ProjectReference Include="Runtime.csproj">
-      <Project>{08152396-93F3-82C1-865D-FFF4D789D10D}</Project>
-      <Name>Runtime</Name>
-    </ProjectReference>
-    <ProjectReference Include="Editor.csproj">
-      <Project>{9867257B-5924-F652-AE46-27EA365B31B1}</Project>
-      <Name>Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="XNode.csproj">
-      <Project>{A5D3A215-60BA-ACED-E9FA-829DA75C14D6}</Project>
-      <Name>XNode</Name>
-    </ProjectReference>
-    <ProjectReference Include="XNodeEditor.csproj">
-      <Project>{451AAED7-9C6B-0FB2-02F0-C1FF4891B4A4}</Project>
-      <Name>XNodeEditor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
