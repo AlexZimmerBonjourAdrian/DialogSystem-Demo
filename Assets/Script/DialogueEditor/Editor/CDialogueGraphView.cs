@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using System;
+using System.Linq;
 
 public class CDialogueGraphView : GraphView
 {
@@ -51,6 +52,7 @@ public class CDialogueGraphView : GraphView
         return node;
     }
 
+
     public override List<Port> GetCompatiblePorts(Port startPort, NodeAdapter nodeAdapter)
     {
         var compatiblePorts = new List<Port>();
@@ -80,13 +82,37 @@ public class CDialogueGraphView : GraphView
             DialogueText = nodeName,
             GUID = Guid.NewGuid().ToString()
         };
+
+        //Genera un puerto de entrada
         var inputPort = GeneratePort(dialogueNode, Direction.Input, Port.Capacity.Multi);
         inputPort.portName = "input";
         dialogueNode.inputContainer.Add(inputPort);
+
+
+        //Genera una opcion button
+
+        var button = new Button(clickEvent: () => { AddChoicePort(dialogueNode); });
+        button.text = "New choice";
+        dialogueNode.titleButtonContainer.Add(button);
+
+
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
         dialogueNode.SetPosition(new Rect(position: Vector2.zero, dafaultNodeSize));
 
         return dialogueNode;
+    }
+
+    //Crea una opcion 
+
+    private void AddChoicePort(CDialogueNode dialogueNode)
+    {
+        var generatePort = GeneratePort(dialogueNode, Direction.Output);
+        var outputPortCount = dialogueNode.outputContainer.Query( name: "connector").ToList().Count;
+        generatePort.portName = $"Choice {outputPortCount}";
+
+        dialogueNode.outputContainer.Add(generatePort);
+        dialogueNode.RefreshPorts();
+        dialogueNode.RefreshExpandedState();
     }
 }
