@@ -7,6 +7,8 @@ using System;
 
 public class CDialogueGraphView : GraphView
 {
+
+    private readonly Vector2 dafaultNodeSize = new Vector2(x: 150, y: 200);
     // Start is called before the first frame update
    public CDialogueGraphView()
     {
@@ -41,7 +43,34 @@ public class CDialogueGraphView : GraphView
         var generatePort = GeneratePort(node, Direction.Output);
         generatePort.portName = "Next";
         node.outputContainer.Add(generatePort);
+
+        node.RefreshExpandedState();
+        node.RefreshPorts();
+
         node.SetPosition(new Rect(x: 100, y: 200, width: 100, height: 150));
         return node;
-    }  
+    }
+    
+   public void CreateNode(string nodeName)
+    {
+        AddElement(CreateDialogueNode(nodeName));
+    }
+
+    public CDialogueNode CreateDialogueNode(string nodeName)
+    {
+        var dialogueNode = new CDialogueNode
+        {
+            title = nodeName,
+            DialogueText = nodeName,
+            GUID = Guid.NewGuid().ToString()
+        };
+        var inputPort = GeneratePort(dialogueNode, Direction.Input, Port.Capacity.Multi);
+        inputPort.portName = "input";
+        dialogueNode.inputContainer.Add(inputPort);
+        dialogueNode.RefreshExpandedState();
+        dialogueNode.RefreshPorts();
+        dialogueNode.SetPosition(new Rect(position: Vector2.zero, dafaultNodeSize));
+
+        return dialogueNode;
+    }
 }

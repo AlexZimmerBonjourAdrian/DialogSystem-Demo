@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
+//using PixelCrushers.DialogueSystem.DialogueEditor;
 
 public class CDialogueGraph : EditorWindow
 {
@@ -24,6 +26,13 @@ public class CDialogueGraph : EditorWindow
 
     private void OnEnable()
     {
+        ConstructGraphView();
+        GenerateToolBar();
+
+    }
+
+    private void ConstructGraphView()
+    {
         //Create new _GraphView, how name "Dialogue Graph"
         _graphView = new CDialogueGraphView
         {
@@ -32,9 +41,21 @@ public class CDialogueGraph : EditorWindow
 
         //Set Config to see
         _graphView.StretchToParentSize();
-        
-        rootVisualElement.Add(_graphView);
 
+        rootVisualElement.Add(_graphView);
+    }
+
+    private void GenerateToolBar()
+    {
+        var toolbar = new Toolbar();
+        var nodeCreateButton = new Button(clickEvent: () =>
+        {
+            _graphView.CreateNode("Dialogue Node");
+        });
+        nodeCreateButton.text = "Create Node";
+        toolbar.Add(nodeCreateButton);
+
+        rootVisualElement.Add(toolbar);
     }
 
     private void OnDisable()
