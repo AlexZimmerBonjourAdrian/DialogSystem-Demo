@@ -13,6 +13,8 @@ public class CDialogueGraphView : GraphView
     // Start is called before the first frame update
    public CDialogueGraphView()
     {
+        //Zoom 
+        SetupZoom(ContentZoomer.DefaultMinScale,ContentZoomer.DefaultMaxScale);
         //Set configuration ContentDragger, SelectionDragger and Selection Node 
         //manipulation Node and content
         this.AddManipulator(new ContentDragger());
@@ -95,6 +97,7 @@ public class CDialogueGraphView : GraphView
         button.text = "New choice";
         dialogueNode.titleButtonContainer.Add(button);
 
+       ;
 
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
@@ -110,6 +113,8 @@ public class CDialogueGraphView : GraphView
         var generatePort = GeneratePort(dialogueNode, Direction.Output);
         var outputPortCount = dialogueNode.outputContainer.Query( name: "connector").ToList().Count;
         generatePort.portName = $"Choice {outputPortCount}";
+
+
 
         dialogueNode.outputContainer.Add(generatePort);
         dialogueNode.RefreshPorts();
