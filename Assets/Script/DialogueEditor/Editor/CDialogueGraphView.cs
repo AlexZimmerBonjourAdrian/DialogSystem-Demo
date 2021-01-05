@@ -13,6 +13,8 @@ public class CDialogueGraphView : GraphView
     // Start is called before the first frame update
    public CDialogueGraphView()
     {
+
+        styleSheets.Add(styleSheet: Resources.Load<StyleSheet>(path: "DialogueGraph"));
         //Zoom 
         SetupZoom(ContentZoomer.DefaultMinScale,ContentZoomer.DefaultMaxScale);
         //Set configuration ContentDragger, SelectionDragger and Selection Node 
@@ -20,6 +22,8 @@ public class CDialogueGraphView : GraphView
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
+
+        
 
         var grid = new GridBackground();
         Insert(index: 0, grid);
