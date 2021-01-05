@@ -21,6 +21,10 @@ public class CDialogueGraphView : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
+        var grid = new GridBackground();
+        Insert(index: 0, grid);
+        grid.StretchToParentSize();
+
         AddElement( GenerateEntryPointNode()); 
     }
 
