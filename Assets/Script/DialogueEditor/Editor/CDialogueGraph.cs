@@ -58,9 +58,10 @@ public class CDialogueGraph : EditorWindow
         fileNameTesstField.RegisterValueChangedCallback(evt => _fileName = evt.newValue);
         toolbar.Add(fileNameTesstField);
 
-        toolbar.Add(child: new Button(clickEvent: () => SaveData()) { text = "Save Data" });
+        toolbar.Add(child: new Button(clickEvent: () => RequestDataOperation(save: false)) { text = "Save Data" });
+        //toolbar.Add(child: new Button(clickEvent: () => SaveData()) { text = "Save Data" });
 
-        toolbar.Add(new Button(() => LoadData()) { text = "Load Data" });
+        toolbar.Add(new Button(() => RequestDataOperation(save:false)) { text = "Load Data" });
         var nodeCreateButton = new Button(clickEvent: () =>
         {
             _graphView.CreateNode("Dialogue Node");
@@ -69,6 +70,24 @@ public class CDialogueGraph : EditorWindow
         toolbar.Add(nodeCreateButton);
 
         rootVisualElement.Add(toolbar);
+    }
+
+    private void RequestDataOperation(bool save)
+    {
+     
+        if(string.IsNullOrEmpty(_fileName))
+        {
+            EditorUtility.DisplayDialog("Invalid file name!", "Please enter a valid file name. ", ok: "OK");
+            return;
+        }
+
+        var _SaveUtility = CGraphSaveUtility.GetInstance(_graphView);
+        if (save)
+            _SaveUtility.SaveGraph(_fileName);
+        else
+        {
+            _SaveUtility.LoadGraph(_fileName);
+        }
     }
 
     private void LoadData()
