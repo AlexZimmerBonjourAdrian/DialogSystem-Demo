@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
@@ -12,6 +12,8 @@ public class CDialogueGraph : EditorWindow
     // Start is called before the first frame update
 
     private CDialogueGraphView _graphView;
+
+    private string _fileName= "New Narrative";
 
     //Menu implementation
         [MenuItem("Graph/Dialogue Graph")]
@@ -48,6 +50,13 @@ public class CDialogueGraph : EditorWindow
     private void GenerateToolBar()
     {
         var toolbar = new Toolbar();
+
+        var fileNameTesstField = new TextField(label: "File Name:");
+        fileNameTesstField.SetValueWithoutNotify(_fileName);
+        fileNameTesstField.MarkDirtyRepaint();
+        fileNameTesstField.RegisterValueChangedCallback(evt =>_fileName = evt.newValue);
+        toolbar.Add(fileNameTesstField);
+
         var nodeCreateButton = new Button(clickEvent: () =>
         {
             _graphView.CreateNode("Dialogue Node");
