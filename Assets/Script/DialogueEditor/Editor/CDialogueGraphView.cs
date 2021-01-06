@@ -32,7 +32,7 @@ public class CDialogueGraphView : GraphView
         AddElement( GenerateEntryPointNode()); 
     }
 
-    private Port GeneratePort(CDialogueNode node, Direction portDirection, Port.Capacity capacity = Port.Capacity.Single)
+    public Port GeneratePort(CDialogueNode node, Direction portDirection, Port.Capacity capacity = Port.Capacity.Single)
     {
         return node.InstantiatePort(Orientation.Horizontal, portDirection, capacity, type: typeof(float)); //Arbitrary type
 
@@ -114,18 +114,39 @@ public class CDialogueGraphView : GraphView
         return dialogueNode;
     }
 
+
     //Crea una opcion 
 
-    private void AddChoicePort(CDialogueNode dialogueNode)
+    public void AddChoicePort(CDialogueNode dialogueNode,string overridenPortName = "")
     {
         var generatePort = GeneratePort(dialogueNode, Direction.Output);
         var outputPortCount = dialogueNode.outputContainer.Query( name: "connector").ToList().Count;
-        generatePort.portName = $"Choice {outputPortCount}";
+       // generatePort.portName = $"Choice {outputPortCount}";
 
+        var choicePortName = string.IsNullOrEmpty(overridenPortName) ? $"Choice {outputPortCount + 1 }" : overridenPortName;
 
-
+        var textField = new TextField
+        {
+            name = string.Empty,
+            value = choicePortName
+        };
+        textField.RegisterValueChangedCallback(evt => generatePort.portName = evt.newValue);
+        generatePort.contentContainer.Add(new Label ( " " ));
+        generatePort.contentContainer.Add(textField);
+        var deleteButton = new Button(() => RemovePort(dialogueNode,generatePort))
+        {
+            text = "X"
+        };
+        generatePort.contentContainer.Add(deleteButton);
+        
+        generatePort.portName = choicePortName;
         dialogueNode.outputContainer.Add(generatePort);
         dialogueNode.RefreshPorts();
         dialogueNode.RefreshExpandedState();
+    }
+
+    private void RemovePort(CDialogueNode dialogueNode, Port generatePort)
+    {
+     
     }
 }
