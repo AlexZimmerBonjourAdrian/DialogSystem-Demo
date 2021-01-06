@@ -66,10 +66,6 @@
   <ItemGroup>
     <Compile Include="Assets\Script\DialogueEditor\Editor\CDialogueGraph.cs" />
     <Compile Include="Assets\Script\DialogueEditor\Editor\CDialogueGraphView.cs" />
-    <Compile Include="Assets\Script\DialogueEditor\Editor\RunTime\CDialogueConteiner.cs" />
-    <Compile Include="Assets\Script\DialogueEditor\Editor\RunTime\CDialogueNodeData.cs" />
-    <Compile Include="Assets\Script\DialogueEditor\Editor\RunTime\CGraphSaveUtility.cs" />
-    <Compile Include="Assets\Script\DialogueEditor\Editor\RunTime\CNodeLinkData.cs" />
     <None Include="Assets\Script\DialogueEditor\Editor\Resources\DialogueGraph.uss" />
     <Reference Include="UnityEngine">
       <HintPath>F:/unity/Editor/2019.4.1f1/2019.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
