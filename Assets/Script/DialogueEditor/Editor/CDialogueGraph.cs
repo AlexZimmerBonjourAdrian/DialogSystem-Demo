@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using System;
 //using PixelCrushers.DialogueSystem.DialogueEditor;
 
 public class CDialogueGraph : EditorWindow
@@ -55,6 +56,9 @@ public class CDialogueGraph : EditorWindow
         filenameTextField.RegisterValueChangedCallback(evt => _fileName = evt.newValue);
         toolbar.Add(filenameTextField);
 
+        toolbar.Add(child: new Button(clickEvent: () => SaveData()) { text = "Save Data" });
+        toolbar.Add(child: new Button(clickEvent: () => LoadData()) { text = "Save Data" });
+
         var nodeCreateButton = new Button(clickEvent: () =>
         {
             _graphView.CreateNode("Dialogue Node");
@@ -63,6 +67,16 @@ public class CDialogueGraph : EditorWindow
         toolbar.Add(nodeCreateButton);
 
         rootVisualElement.Add(toolbar);
+    }
+
+    private void LoadData()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void SaveData()
+    {
+        throw new NotImplementedException();
     }
 
     private void OnDisable()
