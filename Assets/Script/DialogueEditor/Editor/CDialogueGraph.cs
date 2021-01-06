@@ -9,6 +9,7 @@ using UnityEditor.UIElements;
 
 public class CDialogueGraph : EditorWindow
 {
+    private string _fileName = "New Narrative";
     // Start is called before the first frame update
 
     private CDialogueGraphView _graphView;
@@ -48,6 +49,12 @@ public class CDialogueGraph : EditorWindow
     private void GenerateToolBar()
     {
         var toolbar = new Toolbar();
+        var filenameTextField = new TextField(label: "File Name:");
+        filenameTextField.SetValueWithoutNotify(_fileName);
+        filenameTextField.MarkDirtyRepaint();
+        filenameTextField.RegisterValueChangedCallback(evt => _fileName = evt.newValue);
+        toolbar.Add(filenameTextField);
+
         var nodeCreateButton = new Button(clickEvent: () =>
         {
             _graphView.CreateNode("Dialogue Node");
