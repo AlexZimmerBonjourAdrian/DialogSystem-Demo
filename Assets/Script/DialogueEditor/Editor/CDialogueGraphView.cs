@@ -55,7 +55,10 @@ public class CDialogueGraphView : GraphView
         generatePort.portName = "Next";
         node.outputContainer.Add(generatePort);
 
-   
+
+        //selected Nodes to Rectangule selector
+        node.capabilities &= ~Capabilities.Movable;
+        node.capabilities &= ~Capabilities.Movable;
 
         node.RefreshExpandedState();
         node.RefreshPorts();
