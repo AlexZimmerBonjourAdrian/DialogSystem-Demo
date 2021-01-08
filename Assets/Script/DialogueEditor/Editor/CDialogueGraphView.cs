@@ -10,10 +10,13 @@ public class CDialogueGraphView : GraphView
 {
 
    public readonly Vector2 DafaultNodeSize = new Vector2(x: 150, y: 200);
+
+    private CNodeSearchWindows _searchWindow;
     // Start is called before the first frame update
    public CDialogueGraphView()
     {
 
+        
         styleSheets.Add(styleSheet: Resources.Load<StyleSheet>(path: "DialogueGraph"));
         //Zoom 
         SetupZoom(ContentZoomer.DefaultMinScale,ContentZoomer.DefaultMaxScale);
@@ -29,7 +32,14 @@ public class CDialogueGraphView : GraphView
         Insert(index: 0, grid);
         grid.StretchToParentSize();
 
-        AddElement( GenerateEntryPointNode()); 
+        AddElement( GenerateEntryPointNode());
+        AddSearchWindow();
+    }
+
+    private void AddSearchWindow()
+    {
+        _searchWindow = ScriptableObject.CreateInstance<CNodeSearchWindows>();
+        nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
     }
 
     private Port GeneratePort(CDialogueNode node, Direction portDirection, Port.Capacity capacity = Port.Capacity.Single)
