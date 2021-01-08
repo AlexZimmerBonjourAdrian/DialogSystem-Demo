@@ -8,7 +8,12 @@ using UnityEngine.UIElements;
 
 public class CNodeSearchWindows : ScriptableObject, ISearchWindowProvider
 {
-    
+    private CDialogueGraphView _graphView;
+
+    public void Init(CDialogueGraphView graphView)
+    {
+        _graphView = graphView;
+    }
 
     public List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
     {
@@ -31,7 +36,7 @@ public class CNodeSearchWindows : ScriptableObject, ISearchWindowProvider
         switch(SearchTreeEntry.userData)
         {
             case CDialogueNode dialogueNode:
-                Debug.Log(message: "Dialogue Node Created!!!");
+                _graphView.CreateNode("Dialogue Node");
                 return true;
             default:
                 return false;

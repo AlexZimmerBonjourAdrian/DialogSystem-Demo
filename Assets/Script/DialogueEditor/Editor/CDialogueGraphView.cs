@@ -39,6 +39,7 @@ public class CDialogueGraphView : GraphView
     private void AddSearchWindow()
     {
         _searchWindow = ScriptableObject.CreateInstance<CNodeSearchWindows>();
+        _searchWindow.Init(graphView: this);
         nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
     }
 
