@@ -70,6 +70,7 @@
     <Compile Include="Assets\Script\DialogueEditor\Editor\Runtime\CDialogueNodeData.cs" />
     <Compile Include="Assets\Script\DialogueEditor\Editor\Runtime\CGraphSaveUtility.cs" />
     <Compile Include="Assets\Script\DialogueEditor\Editor\Runtime\CNodeLinkData.cs" />
+    <None Include="Assets\Script\DialogueEditor\Editor\Resources\Node.uss" />
     <None Include="Assets\Script\DialogueEditor\Editor\Resources\DialogueGraph.uss" />
     <Reference Include="UnityEngine">
       <HintPath>F:/unity/Editor/2019.4.1f1/2019.4.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

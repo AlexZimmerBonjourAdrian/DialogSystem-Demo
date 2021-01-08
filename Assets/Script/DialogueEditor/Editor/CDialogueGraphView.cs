@@ -55,6 +55,8 @@ public class CDialogueGraphView : GraphView
         generatePort.portName = "Next";
         node.outputContainer.Add(generatePort);
 
+   
+
         node.RefreshExpandedState();
         node.RefreshPorts();
 
@@ -98,7 +100,7 @@ public class CDialogueGraphView : GraphView
         inputPort.portName = "input";
         dialogueNode.inputContainer.Add(inputPort);
 
-
+        dialogueNode.styleSheets.Add(styleSheet: Resources.Load<StyleSheet>(path: "Node"))
         //Genera una opcion button
 
         var button = new Button(clickEvent: () => { AddChoicePort(dialogueNode); });
