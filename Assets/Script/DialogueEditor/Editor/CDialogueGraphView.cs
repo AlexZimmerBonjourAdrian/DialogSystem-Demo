@@ -103,7 +103,7 @@ public class CDialogueGraphView : GraphView
         inputPort.portName = "input";
         dialogueNode.inputContainer.Add(inputPort);
 
-        dialogueNode.styleSheets.Add(styleSheet: Resources.Load<StyleSheet>(path: "Node"))
+        dialogueNode.styleSheets.Add(styleSheet: Resources.Load<StyleSheet>(path: "Node"));
         //Genera una opcion button
 
         var button = new Button(clickEvent: () => { AddChoicePort(dialogueNode); });

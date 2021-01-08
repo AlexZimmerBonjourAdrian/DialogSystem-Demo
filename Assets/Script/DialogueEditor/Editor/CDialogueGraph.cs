@@ -12,6 +12,7 @@ public class CDialogueGraph : EditorWindow
 {
     private string _fileName = "New Narrative";
     // Start is called before the first frame update
+   // private bool anchored = false;
 
     private CDialogueGraphView _graphView;
 
@@ -30,7 +31,15 @@ public class CDialogueGraph : EditorWindow
     {
         ConstructGraphView();
         GenerateToolBar();
+        GenerateMiniMap();
 
+    }
+
+    private void GenerateMiniMap()
+    {
+        var minMap = new MiniMap{anchored = true};
+        minMap.SetPosition(newPos: new Rect(x: 10, y: 30, width: 200, height: 140));
+        _graphView.Add(minMap);
     }
 
     private void ConstructGraphView()
