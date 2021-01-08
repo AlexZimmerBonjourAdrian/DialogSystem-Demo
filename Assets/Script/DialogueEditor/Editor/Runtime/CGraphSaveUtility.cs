@@ -90,6 +90,8 @@ public class CGraphSaveUtility
                 LinkNodes(Nodes[i].outputContainer[j].Q<Port>(),  (Port)targetNode.inputContainer[0]);
                 targetNode.SetPosition(newPos: new Rect( _ContainerCache.DialogueNodeData.First(x => x.Guid == targetNodeGuid).Position, _targetGraphView.DafaultNodeSize
                     ));
+
+               
                
             }
         }

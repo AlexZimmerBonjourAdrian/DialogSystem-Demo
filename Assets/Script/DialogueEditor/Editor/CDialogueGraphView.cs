@@ -105,7 +105,15 @@ public class CDialogueGraphView : GraphView
         button.text = "New choice";
         dialogueNode.titleButtonContainer.Add(button);
 
-       ;
+        var textField = new TextField(label: string.Empty);
+        textField.RegisterValueChangedCallback(evt =>
+        {
+            dialogueNode.DialogueText = evt.newValue;
+            dialogueNode.title = evt.newValue;
+        });
+
+        textField.SetValueWithoutNotify(dialogueNode.title);
+        dialogueNode.mainContainer.Add(textField);
 
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
