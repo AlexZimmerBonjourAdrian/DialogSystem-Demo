@@ -73,7 +73,7 @@ public class CGraphSaveUtility
             return;
         }
 
-        CreaeGraph();
+        ClearGraph();
         CreateNodes();
         ConnectNodes();
     }
@@ -96,7 +96,7 @@ public class CGraphSaveUtility
         }
     }
 
-    private void CreaeGraph()
+    private void ClearGraph()
     {
         //set entry points guid back from the save. Duscard existing guid.
         Nodes.Find(match: x => x.EntryPoint).GUID = _ContainerCache.NodeLinks[0].BaseNodeGuid;
@@ -106,7 +106,7 @@ public class CGraphSaveUtility
         foreach (var node in Nodes)
         {
 
-            if (node.EntryPoint) return;
+            if (node.EntryPoint) continue;
             Edges.Where(x => x.input.node == node).ToList().ForEach(edge=>_targetGraphView.RemoveElement(edge));
 
            

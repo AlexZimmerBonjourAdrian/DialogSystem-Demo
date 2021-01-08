@@ -121,6 +121,10 @@ public class CDialogueGraphView : GraphView
   public void AddChoicePort(CDialogueNode dialogueNode,string overiderPortName= "")
     {
         var generatePort = GeneratePort(dialogueNode, Direction.Output);
+
+        var oldLabel = generatePort.contentContainer.Q<Label>(name: "type");
+        generatePort.contentContainer.Remove(oldLabel);
+
         var outputPortCount = dialogueNode.outputContainer.Query( name: "connector").ToList().Count;
        // generatePort.portName = $"Choice {outputPortCount}";
 
@@ -150,6 +154,17 @@ public class CDialogueGraphView : GraphView
 
     private void RemovePort(CDialogueNode dialogueNode, Port generatePort)
     {
-        throw new NotImplementedException();
+        var targetEdge = edges.ToList().Where(x => x.output.portName == generatePort.portName && x.output.node == generatePort.node);
+        if (!targetEdge.Any())
+        {
+
+        }
+        var edge = targetEdge.First();
+        edge.input.Disconnect(edge);
+        RemoveElement(targetEdge.First());
+
+        dialogueNode.outputContainer.Remove(generatePort);
+        dialogueNode.RefreshPorts();
+        dialogueNode.RefreshExpandedState();
     }
 }
