@@ -13,6 +13,27 @@ MonoBehaviour:
   m_Name: New Narrative
   m_EditorClassIdentifier: 
   NodeLinks:
-  - BaseNodeGuid: 3ad80600-bf2b-48c5-8e98-be818972dd18
+  - BaseNodeGuid: f33a0816-56a9-4526-812f-9b602461c2ea
     PortName: Next
-    TargetNodeGuid: af18c387-787f-4561-a156-fd7c11636824
+    TargetNodeGuid: c25e186f-afa4-4550-b4ee-6fa6dbb2eced
+  - BaseNodeGuid: c25e186f-afa4-4550-b4ee-6fa6dbb2eced
+    PortName: choice1
+    TargetNodeGuid: d175c930-4da0-4229-a7d7-484f56fc68ec
+  - BaseNodeGuid: c25e186f-afa4-4550-b4ee-6fa6dbb2eced
+    PortName: choice2
+    TargetNodeGuid: 8f60464c-c4ef-420f-8b81-eff1c0bb8677
+  - BaseNodeGuid: d175c930-4da0-4229-a7d7-484f56fc68ec
+    PortName: choice1
+    TargetNodeGuid: 728e0a88-7ee0-4c9f-acc0-d8661d76565c
+  - BaseNodeGuid: 8f60464c-c4ef-420f-8b81-eff1c0bb8677
+    PortName: choice1
+    TargetNodeGuid: 1869cb32-5250-4be5-942c-f52a37899a0b
+  - BaseNodeGuid: 8f60464c-c4ef-420f-8b81-eff1c0bb8677
+    PortName: choice2
+    TargetNodeGuid: 728e0a88-7ee0-4c9f-acc0-d8661d76565c
+  - BaseNodeGuid: 1869cb32-5250-4be5-942c-f52a37899a0b
+    PortName: choice1
+    TargetNodeGuid: 57a82de7-3d52-4d82-af37-1c172025359e
+  - BaseNodeGuid: 728e0a88-7ee0-4c9f-acc0-d8661d76565c
+    PortName: choice1
+    TargetNodeGuid: 57a82de7-3d52-4d82-af37-1c172025359e
