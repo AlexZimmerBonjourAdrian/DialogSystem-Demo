@@ -9,7 +9,7 @@ using System.Linq;
 public class CDialogueGraphView : GraphView
 {
 
-    private readonly Vector2 dafaultNodeSize = new Vector2(x: 150, y: 200);
+   public readonly Vector2 DafaultNodeSize = new Vector2(x: 150, y: 200);
     // Start is called before the first frame update
    public CDialogueGraphView()
     {
@@ -109,7 +109,7 @@ public class CDialogueGraphView : GraphView
 
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
-        dialogueNode.SetPosition(new Rect(position: Vector2.zero, dafaultNodeSize));
+        dialogueNode.SetPosition(new Rect(position: Vector2.zero, DafaultNodeSize));
 
         return dialogueNode;
     }

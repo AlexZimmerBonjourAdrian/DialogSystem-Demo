@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ae073633678400439c2fb9414e76546, type: 3}
+  m_Name: New Narrative
+  m_EditorClassIdentifier: 
+  NodeLinks:
+  - BaseNodeGuid: 3ad80600-bf2b-48c5-8e98-be818972dd18
+    PortName: Next
+    TargetNodeGuid: af18c387-787f-4561-a156-fd7c11636824

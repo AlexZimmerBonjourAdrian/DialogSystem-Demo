@@ -80,7 +80,32 @@ public class CGraphSaveUtility
 
     private void ConnectNodes()
     {
-        throw new NotImplementedException();
+       for(var i = 0;i<Nodes.Count; i++)
+        {
+            var connections = _ContainerCache.NodeLinks.Where(x => x.BaseNodeGuid == Nodes[i].GUID).ToList();
+            for(var j = 0;j < connections.Count; j++)
+            {
+                var targetNodeGuid = connections[j].TargetNodeGuid;
+                var targetNode = Nodes.First(x => x.GUID == targetNodeGuid);
+                LinkNodes(Nodes[i].outputContainer[j].Q<Port>(),  (Port)targetNode.inputContainer[0]);
+                targetNode.SetPosition(newPos: new Rect( _ContainerCache.DialogueNodeData.First(x => x.Guid == targetNodeGuid).Position, _targetGraphView.DafaultNodeSize
+                    ));
+               
+            }
+        }
+    }
+
+    public void LinkNodes(Port outPut, Port input)
+    {
+        var tempEdge = new Edge
+        {
+            output = outPut,
+            input = input
+        };
+        tempEdge?.input.Connect(tempEdge);
+        tempEdge?.output.Connect(tempEdge);
+        _targetGraphView.Add(tempEdge);
+
     }
 
     private void CreateNodes()
