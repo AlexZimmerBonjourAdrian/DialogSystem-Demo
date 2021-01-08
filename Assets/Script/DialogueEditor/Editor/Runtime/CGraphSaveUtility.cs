@@ -14,7 +14,7 @@ using UnityEngine.UIElements;
 public class CGraphSaveUtility
 {
     private CDialogueGraphView _targetGraphView;
-
+    private CDialogueContainer _ContainerCache;
     private List<Edge> Edges => _targetGraphView.edges.ToList();
     private List<CDialogueNode> Nodes => _targetGraphView.nodes.ToList().Cast<CDialogueNode>().ToList();
 
@@ -65,10 +65,60 @@ public class CGraphSaveUtility
 
     public void LoadGraph(string fileName)
     {
+        _ContainerCache = Resources.Load<CDialogueContainer>(fileName);
+
+        if(_ContainerCache == null)
+        {
+            EditorUtility.DisplayDialog(title: "File not found", message: "target dialogue graph file does not exists!", ok: "0");
+            return;
+        }
+
+        CreaeGraph();
+        CreateNodes();
+        ConnectNodes();
+    }
+
+    private void ConnectNodes()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void CreateNodes()
+    {
+       foreach(var nodeData in _ContainerCache.DialogueNodeData)
+        {
+            var tempNode = _targetGraphView.CreateDialogueNode(nodeData.DialogueText);
+            tempNode.GUID = nodeData.Guid;
+            _targetGraphView.AddElement(tempNode);
+
+            var nodePorts = _ContainerCache.NodeLinks.Where(x => x.BaseNodeGuid == nodeData.Guid).ToList();
+            nodePorts.ForEach(x => _targetGraphView.AddChoicePort(tempNode, x.PortName));
+        }
+    }
+
+    private void CreaeGraph()
+    {
+        //set entry points guid back from the save. Duscard existing guid.
+        Nodes.Find(match: x => x.EntryPoint).GUID = _ContainerCache.NodeLinks[0].BaseNodeGuid;
+
+
+        //Remove edges that connected to this node
+        foreach (var node in Nodes)
+        {
+
+            if (node.EntryPoint) return;
+            Edges.Where(x => x.input.node == node).ToList().ForEach(edge=>_targetGraphView.RemoveElement(edge));
+
+           
+            //then remove the node
+            _targetGraphView.RemoveElement(node);
+
+            
+        }
 
     }
-    
-   // private Cd
-   // public static CGraphSaveUtility GetInstance)
+
+    // private Cd
+    // public static CGraphSaveUtility GetInstance)
     //public static CGraphSaveUtility GetInstance()
 }
