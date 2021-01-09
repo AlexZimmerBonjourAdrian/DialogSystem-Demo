@@ -114,6 +114,7 @@ public class CGraphSaveUtility
     {
        foreach(var nodeData in _ContainerCache.DialogueNodeData)
         {
+            //We pass position latter on, so we can just use Vec2 zero for now as position wile loading node
             var tempNode = _targetGraphView.CreateDialogueNode(nodeData.DialogueText,Vector2.zero);
             tempNode.GUID = nodeData.Guid;
             _targetGraphView.AddElement(tempNode);

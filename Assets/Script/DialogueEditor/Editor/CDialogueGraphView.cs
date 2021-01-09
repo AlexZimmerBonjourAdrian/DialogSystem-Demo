@@ -134,7 +134,7 @@ public class CDialogueGraphView : GraphView
 
         dialogueNode.RefreshExpandedState();
         dialogueNode.RefreshPorts();
-        dialogueNode.SetPosition(new Rect(position: Vector2.zero, DafaultNodeSize));
+        dialogueNode.SetPosition(new Rect(position: position, DafaultNodeSize));
 
         return dialogueNode;
     }
