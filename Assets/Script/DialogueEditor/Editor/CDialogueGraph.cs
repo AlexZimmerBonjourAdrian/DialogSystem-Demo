@@ -32,7 +32,15 @@ public class CDialogueGraph : EditorWindow
         ConstructGraphView();
         GenerateToolBar();
         GenerateMiniMap();
+        GenerateBlackBoad();
 
+    }
+
+    private void GenerateBlackBoad()
+    {
+        var blackboard = new Blackboard(_graphView);
+        blackboard.Add(child: new BlackboardSection { title = "Exposed Properties" });
+        _graphView.Add(blackboard);
     }
 
     private void GenerateMiniMap()

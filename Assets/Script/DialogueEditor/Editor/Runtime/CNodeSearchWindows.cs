@@ -10,11 +10,16 @@ public class CNodeSearchWindows : ScriptableObject, ISearchWindowProvider
 {
     private CDialogueGraphView _graphView;
     private EditorWindow _window;
+    private Texture2D _indentationIcon;
     public void Init(EditorWindow window,CDialogueGraphView graphView)
     {
         _graphView = graphView;
         _window = window;
-        
+
+        //indentatation hack for search window as a transparent icon
+        _indentationIcon = new Texture2D(width: 1, height: 1);
+        _indentationIcon.SetPixel(x: 0, y: 0, new Color(r: 0, g: 0, b: 0, a: 0));//Dont forget to set the alpha to 0 as well
+        _indentationIcon.Apply();
     }
 
     public List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
@@ -23,7 +28,7 @@ public class CNodeSearchWindows : ScriptableObject, ISearchWindowProvider
         {
             new SearchTreeGroupEntry(new GUIContent (text: "Create Elements"), level:0),
             new SearchTreeGroupEntry(new GUIContent(text: "Dialogue Node"),level:1),
-            new SearchTreeEntry(new GUIContent(text:"Dialogue Node"))
+            new SearchTreeEntry(new GUIContent(text:"Dialogue Node",_indentationIcon))
             {
                 userData = new CDialogueNode(),level= 2
             },
