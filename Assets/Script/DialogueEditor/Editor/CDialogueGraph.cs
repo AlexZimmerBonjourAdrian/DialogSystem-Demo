@@ -45,7 +45,7 @@ public class CDialogueGraph : EditorWindow
     private void ConstructGraphView()
     {
         //Create new _GraphView, how name "Dialogue Graph"
-        _graphView = new CDialogueGraphView
+        _graphView = new CDialogueGraphView(this)
         {
             name = "Dialogue Graph"
         };
@@ -70,7 +70,7 @@ public class CDialogueGraph : EditorWindow
 
         var nodeCreateButton = new Button(clickEvent: () =>
         {
-            _graphView.CreateNode("Dialogue Node");
+            _graphView.CreateNode("Dialogue Node", Vector2.zero);
         });
         nodeCreateButton.text = "Create Node";
         toolbar.Add(nodeCreateButton);

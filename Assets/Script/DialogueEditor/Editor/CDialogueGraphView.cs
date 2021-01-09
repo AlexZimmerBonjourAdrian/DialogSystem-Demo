@@ -5,6 +5,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using System;
 using System.Linq;
+using UnityEditor;
 
 public class CDialogueGraphView : GraphView
 {
@@ -13,7 +14,7 @@ public class CDialogueGraphView : GraphView
 
     private CNodeSearchWindows _searchWindow;
     // Start is called before the first frame update
-   public CDialogueGraphView()
+   public CDialogueGraphView(EditorWindow editorWindow)
     {
 
         
@@ -33,13 +34,13 @@ public class CDialogueGraphView : GraphView
         grid.StretchToParentSize();
 
         AddElement( GenerateEntryPointNode());
-        AddSearchWindow();
+        AddSearchWindow(editorWindow);
     }
 
-    private void AddSearchWindow()
+    private void AddSearchWindow(EditorWindow editorWindow)
     {
         _searchWindow = ScriptableObject.CreateInstance<CNodeSearchWindows>();
-        _searchWindow.Init(graphView: this);
+        _searchWindow.Init(editorWindow,this);
         nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
     }
 
@@ -95,12 +96,12 @@ public class CDialogueGraphView : GraphView
             return compatiblePorts;
     }
 
-    public void CreateNode(string nodeName)
+    public void CreateNode(string nodeName, Vector2 position)
     {
-        AddElement(CreateDialogueNode(nodeName));
+        AddElement(CreateDialogueNode(nodeName,position));
     }
 
-    public CDialogueNode CreateDialogueNode(string nodeName)
+    public CDialogueNode CreateDialogueNode(string nodeName,Vector2 position)
     {
         var dialogueNode = new CDialogueNode
         {

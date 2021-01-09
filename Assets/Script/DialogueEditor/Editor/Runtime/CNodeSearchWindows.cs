@@ -9,10 +9,12 @@ using UnityEngine.UIElements;
 public class CNodeSearchWindows : ScriptableObject, ISearchWindowProvider
 {
     private CDialogueGraphView _graphView;
-
-    public void Init(CDialogueGraphView graphView)
+    private EditorWindow _window;
+    public void Init(EditorWindow window,CDialogueGraphView graphView)
     {
         _graphView = graphView;
+        _window = window;
+        
     }
 
     public List<SearchTreeEntry> CreateSearchTree(SearchWindowContext context)
@@ -33,10 +35,13 @@ public class CNodeSearchWindows : ScriptableObject, ISearchWindowProvider
 
     public bool OnSelectEntry(SearchTreeEntry SearchTreeEntry, SearchWindowContext context)
     {
+        var worldMousePosition = _window.rootVisualElement.ChangeCoordinatesTo(_window.rootVisualElement.parent,  context.screenMousePosition - _window.position.position);
+        var localMousePosition = _graphView.contentViewContainer.WorldToLocal(worldMousePosition);
+        
         switch(SearchTreeEntry.userData)
         {
             case CDialogueNode dialogueNode:
-                _graphView.CreateNode("Dialogue Node");
+                _graphView.CreateNode("Dialogue Node",worldMousePosition);
                 return true;
             default:
                 return false;
