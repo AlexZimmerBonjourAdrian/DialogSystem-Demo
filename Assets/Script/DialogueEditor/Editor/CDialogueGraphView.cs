@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using UnityEditor;
 
+
 public class CDialogueGraphView : GraphView
 {
 
@@ -152,14 +153,14 @@ public class CDialogueGraphView : GraphView
         var oldLabel = generatePort.contentContainer.Q<Label>(name: "type");
         generatePort.contentContainer.Remove(oldLabel);
 
-        var outputPortCount = dialogueNode.outputContainer.Query(name: "connector").ToList().Count;
+        var outputPortCount = dialogueNode.outputContainer.Query("connector").ToList().Count();
         // generatePort.portName = $"Choice {outputPortCount}";
 
-        var choicePortName = string.IsNullOrEmpty(overiderPortName) ? $"choice{outputPortCount + 1}" : overiderPortName;
-        var textField = new TextField
+        var OutputPortName = string.IsNullOrEmpty(overiderPortName) ? $"Option{outputPortCount + 1}" : overiderPortName;
+        var textField = new TextField()
         {
             name = string.Empty,
-            value = choicePortName
+            value = OutputPortName
         };
         textField.RegisterValueChangedCallback(evt => generatePort.portName = evt.newValue);
         generatePort.contentContainer.Add(child: new Label(text: " "));
@@ -172,7 +173,7 @@ public class CDialogueGraphView : GraphView
 
 
         generatePort.contentContainer.Add(deleteButton);
-        generatePort.portName = choicePortName;
+        generatePort.portName = OutputPortName;
 
         dialogueNode.outputContainer.Add(generatePort);
         dialogueNode.RefreshPorts();
@@ -182,13 +183,13 @@ public class CDialogueGraphView : GraphView
     private void RemovePort(CDialogueNode dialogueNode, Port generatePort)
     {
         var targetEdge = edges.ToList().Where(x => x.output.portName == generatePort.portName && x.output.node == generatePort.node);
-        if (!targetEdge.Any())
+        if (targetEdge.Any())
         {
-
+            var edge = targetEdge.First();
+            edge.input.Disconnect(edge);
+            RemoveElement(targetEdge.First());
         }
-        var edge = targetEdge.First();
-        edge.input.Disconnect(edge);
-        RemoveElement(targetEdge.First());
+       
 
         dialogueNode.outputContainer.Remove(generatePort);
         dialogueNode.RefreshPorts();
@@ -205,8 +206,21 @@ public class CDialogueGraphView : GraphView
         var container = new VisualElement();
         var blackboardField = new BlackboardField { text = property.PropertyName, typeText = "string property" };
         container.Add(blackboardField);
+        //      
+        var propertyValueTextField = new TextField(label: "Value:")
+        {
+            value = property.PropertyValue
+        };
+        propertyValueTextField.RegisterValueChangedCallback(evt =>
+        {
+            var changingPropertyIndex = ExposedPropierties.FindIndex(x => x.PropertyName == property.PropertyName);
+            ExposedPropierties[changingPropertyIndex].PropertyValue = evt.newValue;
+        });
+
+        var blackBoardValueRow = new BlackboardRow(blackboardField,propertyValueTextField );
+        container.Add(blackBoardValueRow);
         Blackboard.Add(container);
-}
+    }
         
     }
 
