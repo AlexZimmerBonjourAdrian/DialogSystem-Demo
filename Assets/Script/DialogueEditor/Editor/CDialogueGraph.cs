@@ -6,6 +6,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System;
+using System.Linq;
 //using PixelCrushers.DialogueSystem.DialogueEditor;
 
 public class CDialogueGraph : EditorWindow
@@ -40,10 +41,28 @@ public class CDialogueGraph : EditorWindow
     {
         var blackboard = new Blackboard(_graphView);
         blackboard.Add(child: new BlackboardSection { title = "Exposed Properties" });
+       
+       
         blackboard.addItemRequested = _blackboard =>
          {
              _graphView.AddPropertyToBlackBoard(new CExposedProperty());  
          };
+        blackboard.editTextRequested = (blackboard1, element, newValue) =>
+        {
+
+            var oldPropertyName = ((BlackboardField)element).text;
+            if (_graphView.ExposedPropierties.Any(x => x.PropertyName == newValue))
+            {
+                EditorUtility.DisplayDialog(title: "Error", message: "This property name already exists, please chose another one!", ok: "OK");
+
+                return;
+            }
+
+            var propertyIndex = _graphView.ExposedPropierties.FindIndex(match: x => x.PropertyName == oldPropertyName);
+            _graphView.ExposedPropierties[propertyIndex].PropertyName = newValue;
+            ((BlackboardField)element).text = newValue;
+        };
+
         blackboard.SetPosition(newPos: new Rect(x: 10, y: 30, width: 200, 300));
         _graphView.Add(blackboard);
         _graphView.Blackboard = blackboard;

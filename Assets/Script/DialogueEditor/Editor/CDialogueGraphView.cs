@@ -198,18 +198,26 @@ public class CDialogueGraphView : GraphView
 
     public void AddPropertyToBlackBoard(CExposedProperty exposedProperty)
     {
+        var localPropertyName = exposedProperty.PropertyName;
+        var localPropertyValue = exposedProperty.PropertyValue;
+
+        while(ExposedPropierties.Any(X => X.PropertyValue == localPropertyName))
+        {
+            localPropertyName = $"{localPropertyName}(1)";
+        }
+
         var property = new CExposedProperty();
-        property.PropertyName = exposedProperty.PropertyName;
-        property.PropertyValue = exposedProperty.PropertyValue;
+        property.PropertyName = localPropertyName;
+        property.PropertyValue = localPropertyValue;
         ExposedPropierties.Add(property);
 
         var container = new VisualElement();
         var blackboardField = new BlackboardField { text = property.PropertyName, typeText = "string property" };
         container.Add(blackboardField);
         //      
-        var propertyValueTextField = new TextField(label: "Value:")
+        var propertyValueTextField = new TextField(label: "Value")
         {
-            value = property.PropertyValue
+            value = localPropertyValue
         };
         propertyValueTextField.RegisterValueChangedCallback(evt =>
         {
