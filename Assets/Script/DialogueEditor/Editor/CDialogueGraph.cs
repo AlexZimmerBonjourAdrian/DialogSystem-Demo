@@ -40,13 +40,23 @@ public class CDialogueGraph : EditorWindow
     {
         var blackboard = new Blackboard(_graphView);
         blackboard.Add(child: new BlackboardSection { title = "Exposed Properties" });
+        blackboard.addItemRequested = _blackboard =>
+         {
+             _graphView.AddPropertyToBlackBoard(new CExposedProperty());  
+         };
+        blackboard.SetPosition(newPos: new Rect(x: 10, y: 30, width: 200, 300));
         _graphView.Add(blackboard);
+        _graphView.Blackboard = blackboard;
+
+        
     }
 
     private void GenerateMiniMap()
     {
         var minMap = new MiniMap{anchored = true};
-        minMap.SetPosition(newPos: new Rect(x: 10, y: 30, width: 200, height: 140));
+        //this will give 10px offset left side
+        var cards = _graphView.contentViewContainer.WorldToLocal(p: new Vector2(x: this.maxSize.x - 10, y: 30));
+        minMap.SetPosition(newPos: new Rect(x: cards.x, cards.y, width: 200, height: 140));
         _graphView.Add(minMap);
     }
 

@@ -10,37 +10,39 @@ using UnityEditor;
 public class CDialogueGraphView : GraphView
 {
 
-   public readonly Vector2 DafaultNodeSize = new Vector2(x: 150, y: 200);
-
+    public Blackboard blackboard;
+    public readonly Vector2 DafaultNodeSize = new Vector2(x: 150, y: 200);
+    public Blackboard Blackboard;
+    public List<CExposedProperty> ExposedPropierties = new List<CExposedProperty>();
     private CNodeSearchWindows _searchWindow;
     // Start is called before the first frame update
-   public CDialogueGraphView(EditorWindow editorWindow)
+    public CDialogueGraphView(EditorWindow editorWindow)
     {
 
-        
+
         styleSheets.Add(styleSheet: Resources.Load<StyleSheet>(path: "DialogueGraph"));
         //Zoom 
-        SetupZoom(ContentZoomer.DefaultMinScale,ContentZoomer.DefaultMaxScale);
+        SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
         //Set configuration ContentDragger, SelectionDragger and Selection Node 
         //manipulation Node and content
         this.AddManipulator(new ContentDragger());
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
 
-        
+
 
         var grid = new GridBackground();
         Insert(index: 0, grid);
         grid.StretchToParentSize();
 
-        AddElement( GenerateEntryPointNode());
+        AddElement(GenerateEntryPointNode());
         AddSearchWindow(editorWindow);
     }
 
     private void AddSearchWindow(EditorWindow editorWindow)
     {
         _searchWindow = ScriptableObject.CreateInstance<CNodeSearchWindows>();
-        _searchWindow.Init(editorWindow,this);
+        _searchWindow.Init(editorWindow, this);
         nodeCreationRequest = context => SearchWindow.Open(new SearchWindowContext(context.screenMousePosition), _searchWindow);
     }
 
@@ -85,23 +87,23 @@ public class CDialogueGraphView : GraphView
         var compatiblePorts = new List<Port>();
         ports.ForEach(funcCall: (port) =>
         {
-            
+
             var portView = port;
-            if(startPort != port && startPort.node != port.node)
+            if (startPort != port && startPort.node != port.node)
             {
                 compatiblePorts.Add(port);
             }
         });
 
-            return compatiblePorts;
+        return compatiblePorts;
     }
 
     public void CreateNode(string nodeName, Vector2 position)
     {
-        AddElement(CreateDialogueNode(nodeName,position));
+        AddElement(CreateDialogueNode(nodeName, position));
     }
 
-    public CDialogueNode CreateDialogueNode(string nodeName,Vector2 position)
+    public CDialogueNode CreateDialogueNode(string nodeName, Vector2 position)
     {
         var dialogueNode = new CDialogueNode
         {
@@ -139,19 +141,19 @@ public class CDialogueGraphView : GraphView
         return dialogueNode;
     }
 
-   
+
 
     //Crea una opcion 
 
-  public void AddChoicePort(CDialogueNode dialogueNode,string overiderPortName= "")
+    public void AddChoicePort(CDialogueNode dialogueNode, string overiderPortName = "")
     {
         var generatePort = GeneratePort(dialogueNode, Direction.Output);
 
         var oldLabel = generatePort.contentContainer.Q<Label>(name: "type");
         generatePort.contentContainer.Remove(oldLabel);
 
-        var outputPortCount = dialogueNode.outputContainer.Query( name: "connector").ToList().Count;
-       // generatePort.portName = $"Choice {outputPortCount}";
+        var outputPortCount = dialogueNode.outputContainer.Query(name: "connector").ToList().Count;
+        // generatePort.portName = $"Choice {outputPortCount}";
 
         var choicePortName = string.IsNullOrEmpty(overiderPortName) ? $"choice{outputPortCount + 1}" : overiderPortName;
         var textField = new TextField
@@ -164,10 +166,10 @@ public class CDialogueGraphView : GraphView
         generatePort.contentContainer.Add(textField);
         var deleteButton = new Button(clickEvent: () => RemovePort(dialogueNode, generatePort))
         {
-            text= "x"
+            text = "x"
         };
 
-        
+
 
         generatePort.contentContainer.Add(deleteButton);
         generatePort.portName = choicePortName;
@@ -192,4 +194,20 @@ public class CDialogueGraphView : GraphView
         dialogueNode.RefreshPorts();
         dialogueNode.RefreshExpandedState();
     }
+
+    public void AddPropertyToBlackBoard(CExposedProperty exposedProperty)
+    {
+        var property = new CExposedProperty();
+        property.PropertyName = exposedProperty.PropertyName;
+        property.PropertyValue = exposedProperty.PropertyValue;
+        ExposedPropierties.Add(property);
+
+        var container = new VisualElement();
+        var blackboardField = new BlackboardField { text = property.PropertyName, typeText = "string property" };
+        container.Add(blackboardField);
+        Blackboard.Add(container);
 }
+        
+    }
+
+
