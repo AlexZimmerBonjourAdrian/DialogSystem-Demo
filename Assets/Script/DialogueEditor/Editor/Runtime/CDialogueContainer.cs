@@ -10,6 +10,7 @@ public class CDialogueContainer : ScriptableObject
 {
     // Start is called before the first frame update
     public List<CNodeLinkData> NodeLinks = new List<CNodeLinkData>();
-    public List<CDialogueNodeData> DialogueNodeData = new List<CDialogueNodeData>();
+        public List<CExposedProperty> ExposedProperties = new List<CExposedProperty>();
+        public List<CDialogueNodeData> DialogueNodeData = new List<CDialogueNodeData>();
 }
 }
