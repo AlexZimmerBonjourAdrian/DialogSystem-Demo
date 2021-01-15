@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using Subtegral.DialogueSystem.DataContainers;
+//using UnityEngine.UI;
+//using Subtegral.DialogueSystem.DataContainers;
 
 namespace Subtegral.DialogueSystem.Runtime
 {
     public class DialogueParser : MonoBehaviour
-    {
+    {/*
         [SerializeField] private CDialogueContainer dialogue;
         [SerializeField] private TextMeshProUGUI dialogueText;
         [SerializeField] private Button choicePrefab;
@@ -39,7 +39,7 @@ namespace Subtegral.DialogueSystem.Runtime
                 button.GetComponentInChildren<Text>().text = ProcessProperties(choice.PortName);
                 button.onClick.AddListener(() => ProceedToNarrative(choice.TargetNodeGUID));
             }
-*/
+
         }
 
         private string ProcessProperties(string text)
@@ -50,5 +50,7 @@ namespace Subtegral.DialogueSystem.Runtime
             }
             return text;
         }
+        */
     }
+
 }
