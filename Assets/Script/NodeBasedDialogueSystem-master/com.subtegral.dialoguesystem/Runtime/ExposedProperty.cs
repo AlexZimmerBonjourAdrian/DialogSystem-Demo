@@ -9,6 +9,7 @@
         }
 
         public string PropertyName = "New String";
+        public string PropertySprite = "New Sprite";
         public string PropertyValue = "New Value";
     }
 }

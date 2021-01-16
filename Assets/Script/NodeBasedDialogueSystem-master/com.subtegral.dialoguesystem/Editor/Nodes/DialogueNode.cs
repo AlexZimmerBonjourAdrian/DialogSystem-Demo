@@ -10,6 +10,7 @@ namespace Subtegral.DialogueSystem.Editor
     {
         public string DialogueText;
         public string GUID;
+        public Sprite SpriteCharacter;
         public bool EntyPoint = false;
     }
 }

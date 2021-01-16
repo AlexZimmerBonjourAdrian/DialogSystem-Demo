@@ -6,15 +6,21 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
 namespace Subtegral.DialogueSystem.Editor
 {
     public class NodeSearchWindow : ScriptableObject,ISearchWindowProvider
     {
         private EditorWindow _window;
         private StoryGraphView _graphView;
-
+        private Sprite _CharacterSprite;
         private Texture2D _indentationIcon;
         
+
+         private void Start()
+        {
+            _CharacterSprite = Resources.Load<Sprite>("Prefab / DefaultSprite ");
+        }
         public void Configure(EditorWindow window,StoryGraphView graphView)
         {
             _window = window;
@@ -55,7 +61,7 @@ namespace Subtegral.DialogueSystem.Editor
             switch (SearchTreeEntry.userData)
             {
                 case DialogueNode dialogueNode:
-                    _graphView.CreateNewDialogueNode("Dialogue Node",graphMousePosition);
+                    _graphView.CreateNewDialogueNode("Dialogue Node",graphMousePosition,_CharacterSprite);
                     return true;
                 case Group group:
                     var rect = new Rect(graphMousePosition, _graphView.DefaultCommentBlockSize);

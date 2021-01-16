@@ -20,7 +20,12 @@ namespace Subtegral.DialogueSystem.Editor
         public Blackboard Blackboard = new Blackboard();
         public List<ExposedProperty> ExposedProperties { get; private set; } = new List<ExposedProperty>();
         private NodeSearchWindow _searchWindow;
+        private Sprite DefaultSprite;
 
+        void Start()
+        {
+            DefaultSprite = Resources.Load<Sprite>("Prefab / DefaultSprite");
+        }
         public StoryGraphView(StoryGraph editorWindow)
         {
             styleSheets.Add(Resources.Load<StyleSheet>("NarrativeGraph"));
@@ -74,6 +79,7 @@ namespace Subtegral.DialogueSystem.Editor
         {
             var localPropertyName = property.PropertyName;
             var localPropertyValue = property.PropertyValue;
+            var localPropertySprite = property.PropertySprite;
             if (!loadMode)
             {
                 while (ExposedProperties.Any(x => x.PropertyName == localPropertyName))
@@ -83,15 +89,18 @@ namespace Subtegral.DialogueSystem.Editor
             var item = ExposedProperty.CreateInstance();
             item.PropertyName = localPropertyName;
             item.PropertyValue = localPropertyValue;
+            item.PropertySprite = localPropertySprite;
             ExposedProperties.Add(item);
 
             var container = new VisualElement();
+            //Serch Elements in BlackBoard
             var field = new BlackboardField {text = localPropertyName, typeText = "string"};
             container.Add(field);
 
             var propertyValueTextField = new TextField("Value:")
             {
                 value = localPropertyValue
+                
             };
             propertyValueTextField.RegisterValueChangedCallback(evt =>
             {
@@ -118,17 +127,20 @@ namespace Subtegral.DialogueSystem.Editor
             return compatiblePorts;
         }
 
-        public void CreateNewDialogueNode(string nodeName, Vector2 position)
+        public void CreateNewDialogueNode(string nodeName, Vector2 position, Sprite Sprite)
         {
-            AddElement(CreateNode(nodeName, position));
+            AddElement(CreateNode(nodeName, position,Sprite));
         }
 
-        public DialogueNode CreateNode(string nodeName, Vector2 position)
+        public DialogueNode CreateNode(string nodeName, Vector2 position, Sprite Sprite)
         {
             var tempDialogueNode = new DialogueNode()
             {
                 title = nodeName,
                 DialogueText = nodeName,
+                SpriteCharacter = Sprite,
+                
+               
                 GUID = Guid.NewGuid().ToString()
             };
             tempDialogueNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
@@ -141,12 +153,16 @@ namespace Subtegral.DialogueSystem.Editor
                 DefaultNodeSize)); //To-Do: implement screen center instantiation positioning
 
             var textField = new TextField("");
+            var SpriteCharacterDefault = DefaultSprite;
             textField.RegisterValueChangedCallback(evt =>
             {
                 tempDialogueNode.DialogueText = evt.newValue;
                 tempDialogueNode.title = evt.newValue;
+                
+                
             });
             textField.SetValueWithoutNotify(tempDialogueNode.title);
+            SpriteCharacterDefault = tempDialogueNode.SpriteCharacter;
             tempDialogueNode.mainContainer.Add(textField);
 
             var button = new Button(() => { AddChoicePort(tempDialogueNode); })
