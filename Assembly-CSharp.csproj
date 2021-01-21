@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\Samples\DialogueSystemDemo\CDialogueLoopDialogue.cs" />
     <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\Samples\DialogueSystemDemo\DialogueExampler.cs" />
     <Compile Include="Assets\Script\NodeBasedDialogueSystem-master\Samples\DialogueSystemDemo\DialogueParser.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />

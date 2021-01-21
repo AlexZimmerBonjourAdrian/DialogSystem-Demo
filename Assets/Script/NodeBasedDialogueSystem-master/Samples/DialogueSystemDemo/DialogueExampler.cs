@@ -13,7 +13,8 @@ public class DialogueExampler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private Button choicePrefab;
     [SerializeField] private Transform buttonContainer;
-    // Start is called before the first frame update
+    
+
     void Start()
     {
         var narrativeData = dialogue.NodeLinks.First(); //Entrypoint node
