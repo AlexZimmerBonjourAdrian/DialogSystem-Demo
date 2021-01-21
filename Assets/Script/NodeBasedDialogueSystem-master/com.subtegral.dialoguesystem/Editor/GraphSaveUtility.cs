@@ -150,7 +150,7 @@ namespace Subtegral.DialogueSystem.Editor
         {
             foreach (var perNode in _dialogueContainer.DialogueNodeData)
             {
-                var tempNode = _graphView.CreateNode(perNode.DialogueText, Vector2.zero,perNode.SpriteCharacter);
+                var tempNode = _graphView.CreateNode(perNode.DialogueText, Vector2.zero,perNode.SpriteCharacter,perNode.nameCharacter);
                 tempNode.GUID = perNode.NodeGUID;
                 _graphView.AddElement(tempNode);
 

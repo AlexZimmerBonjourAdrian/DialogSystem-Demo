@@ -40,9 +40,11 @@ namespace Subtegral.DialogueSystem.Editor
             var toolbar = new Toolbar();
 
             var fileNameTextField = new TextField("File Name:");
+          
             fileNameTextField.SetValueWithoutNotify(_fileName);
             fileNameTextField.MarkDirtyRepaint();
             fileNameTextField.RegisterValueChangedCallback(evt => _fileName = evt.newValue);
+            
             toolbar.Add(fileNameTextField);
 
             toolbar.Add(new Button(() => RequestDataOperation(true)) {text = "Save Data"});

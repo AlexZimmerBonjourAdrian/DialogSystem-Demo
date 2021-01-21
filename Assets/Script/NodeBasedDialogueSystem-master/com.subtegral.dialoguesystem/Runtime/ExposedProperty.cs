@@ -8,6 +8,7 @@
             return new ExposedProperty();
         }
 
+        public string PropertyNameCharacter = "New String";
         public string PropertyName = "New String";
         public string PropertySprite = "New Sprite";
         public string PropertyValue = "New Value";

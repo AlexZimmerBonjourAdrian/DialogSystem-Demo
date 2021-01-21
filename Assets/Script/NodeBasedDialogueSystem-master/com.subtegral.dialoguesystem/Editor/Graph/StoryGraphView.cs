@@ -79,17 +79,20 @@ namespace Subtegral.DialogueSystem.Editor
         {
             var localPropertyName = property.PropertyName;
             var localPropertyValue = property.PropertyValue;
-            var localPropertySprite = property.PropertySprite;
+           // var localPropertySprite = property.PropertySprite;
+           // var localPropertyNameCharacter = property.PropertyNameCharacter;
             if (!loadMode)
             {
                 while (ExposedProperties.Any(x => x.PropertyName == localPropertyName))
                     localPropertyName = $"{localPropertyName}(1)";
+
+
             }
 
             var item = ExposedProperty.CreateInstance();
             item.PropertyName = localPropertyName;
             item.PropertyValue = localPropertyValue;
-            item.PropertySprite = localPropertySprite;
+           // item.PropertySprite = localPropertySprite;
             ExposedProperties.Add(item);
 
             var container = new VisualElement();
@@ -127,18 +130,20 @@ namespace Subtegral.DialogueSystem.Editor
             return compatiblePorts;
         }
 
-        public void CreateNewDialogueNode(string nodeName, Vector2 position, Sprite Sprite)
+        public void CreateNewDialogueNode(string nodeName, Vector2 position, Sprite Sprite,string nameCharacter)
         {
-            AddElement(CreateNode(nodeName, position,Sprite));
+            AddElement(CreateNode(nodeName, position,Sprite,nameCharacter));
         }
 
-        public DialogueNode CreateNode(string nodeName, Vector2 position, Sprite Sprite)
+        public DialogueNode CreateNode(string nodeName, Vector2 position, Sprite Sprite, string nameCharacter)
         {
             var tempDialogueNode = new DialogueNode()
             {
                 title = nodeName,
                 DialogueText = nodeName,
-                SpriteCharacter = Sprite,
+               // SpriteCharacter = Sprite,
+                NameCharacter = nameCharacter,
+                
                 
                
                 GUID = Guid.NewGuid().ToString()
@@ -152,23 +157,41 @@ namespace Subtegral.DialogueSystem.Editor
             tempDialogueNode.SetPosition(new Rect(position,
                 DefaultNodeSize)); //To-Do: implement screen center instantiation positioning
 
-            var textField = new TextField("");
+            var textField = new TextField(" ");
+            var textFieldCharacter = new TextField(" ");
             var SpriteCharacterDefault = DefaultSprite;
             textField.RegisterValueChangedCallback(evt =>
             {
                 tempDialogueNode.DialogueText = evt.newValue;
                 tempDialogueNode.title = evt.newValue;
-                
-                
+                // tempDialogueNode.NameCharacter = evt.newValue;
+                //tempDialogueNode.NameCharacter = evt.newValue;
+
             });
+            /*
+            textFieldCharacter.RegisterValueChangedCallback(evt =>
+            {
+               
+            });
+            */
+            
+            
+
             textField.SetValueWithoutNotify(tempDialogueNode.title);
+            textFieldCharacter.SetValueWithoutNotify(tempDialogueNode.NameCharacter);
             SpriteCharacterDefault = tempDialogueNode.SpriteCharacter;
             tempDialogueNode.mainContainer.Add(textField);
+            tempDialogueNode.mainContainer.Add(textFieldCharacter);
 
             var button = new Button(() => { AddChoicePort(tempDialogueNode); })
             {
                 text = "Add Choice"
             };
+            //TODO: load sprinte in editor
+            //OR
+            //Load image using Events
+            //var Sprite = new Image(() = >{ Addimage(Image) ;)
+            
             tempDialogueNode.titleButtonContainer.Add(button);
             return tempDialogueNode;
         }

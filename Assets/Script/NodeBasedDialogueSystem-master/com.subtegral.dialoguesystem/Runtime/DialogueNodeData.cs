@@ -10,5 +10,6 @@ namespace Subtegral.DialogueSystem.DataContainers
         public string DialogueText;
         public Sprite SpriteCharacter;
         public Vector2 Position;
+        public string nameCharacter;
     }
 }
