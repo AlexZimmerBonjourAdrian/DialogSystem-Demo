@@ -10,7 +10,7 @@ namespace Subtegral.DialogueSystem.Editor
     {
         public string DialogueText;
         public string GUID;
-        public Sprite SpriteCharacter;
+        public Texture2D SpriteCharacter;
         public string Name;
         public string NameCharacter;
         public bool EntyPoint = false;

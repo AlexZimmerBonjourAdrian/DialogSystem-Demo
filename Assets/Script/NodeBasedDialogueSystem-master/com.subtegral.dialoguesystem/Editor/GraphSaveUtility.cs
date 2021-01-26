@@ -82,8 +82,11 @@ namespace Subtegral.DialogueSystem.Editor
                 dialogueContainerObject.DialogueNodeData.Add(new DialogueNodeData
                 {
                     NodeGUID = node.GUID,
+                    nameCharacter = node.NameCharacter,
                     DialogueText = node.DialogueText,
                     Position = node.GetPosition().position
+                   
+                    
                 });
             }
 

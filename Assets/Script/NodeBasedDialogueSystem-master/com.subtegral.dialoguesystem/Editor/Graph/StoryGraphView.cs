@@ -20,11 +20,11 @@ namespace Subtegral.DialogueSystem.Editor
         public Blackboard Blackboard = new Blackboard();
         public List<ExposedProperty> ExposedProperties { get; private set; } = new List<ExposedProperty>();
         private NodeSearchWindow _searchWindow;
-        private Sprite DefaultSprite;
+        private Texture2D DefaultSprite;
 
         void Start()
         {
-            DefaultSprite = Resources.Load<Sprite>("Prefab / DefaultSprite");
+            DefaultSprite = Resources.Load<Texture2D>("Prefab / DefaultSprite");
         }
         public StoryGraphView(StoryGraph editorWindow)
         {
@@ -80,7 +80,7 @@ namespace Subtegral.DialogueSystem.Editor
             var localPropertyName = property.PropertyName;
             var localPropertyValue = property.PropertyValue;
            // var localPropertySprite = property.PropertySprite;
-           // var localPropertyNameCharacter = property.PropertyNameCharacter;
+            var localPropertyNameCharacter = property.PropertyNameCharacter;
             if (!loadMode)
             {
                 while (ExposedProperties.Any(x => x.PropertyName == localPropertyName))
@@ -92,6 +92,7 @@ namespace Subtegral.DialogueSystem.Editor
             var item = ExposedProperty.CreateInstance();
             item.PropertyName = localPropertyName;
             item.PropertyValue = localPropertyValue;
+            item.PropertyNameCharacter = localPropertyNameCharacter;
            // item.PropertySprite = localPropertySprite;
             ExposedProperties.Add(item);
 
@@ -130,12 +131,12 @@ namespace Subtegral.DialogueSystem.Editor
             return compatiblePorts;
         }
 
-        public void CreateNewDialogueNode(string nodeName, Vector2 position, Sprite Sprite,string nameCharacter)
+        public void CreateNewDialogueNode(string nodeName, Vector2 position, Texture2D Sprite,string nameCharacter)
         {
             AddElement(CreateNode(nodeName, position,Sprite,nameCharacter));
         }
 
-        public DialogueNode CreateNode(string nodeName, Vector2 position, Sprite Sprite, string nameCharacter)
+        public DialogueNode CreateNode(string nodeName, Vector2 position, Texture2D Sprite, string nameCharacter)
         {
             var tempDialogueNode = new DialogueNode()
             {
@@ -143,10 +144,11 @@ namespace Subtegral.DialogueSystem.Editor
                 DialogueText = nodeName,
                // SpriteCharacter = Sprite,
                 NameCharacter = nameCharacter,
-                
+                SpriteCharacter = Sprite,
                 
                
                 GUID = Guid.NewGuid().ToString()
+               
             };
             tempDialogueNode.styleSheets.Add(Resources.Load<StyleSheet>("Node"));
             var inputPort = GetPortInstance(tempDialogueNode, Direction.Input, Port.Capacity.Multi);
@@ -157,29 +159,39 @@ namespace Subtegral.DialogueSystem.Editor
             tempDialogueNode.SetPosition(new Rect(position,
                 DefaultNodeSize)); //To-Do: implement screen center instantiation positioning
 
-            var textField = new TextField(" ");
-            var textFieldCharacter = new TextField(" ");
-            var SpriteCharacterDefault = DefaultSprite;
+            var textField = new TextField("");
+            var textFieldCharacter = new TextField("");
+
+            var SpriteCharacter =  DefaultSprite;
+           // var SpriteCharacterDefault = DefaultSprite;
             textField.RegisterValueChangedCallback(evt =>
             {
-                tempDialogueNode.DialogueText = evt.newValue;
+               
                 tempDialogueNode.title = evt.newValue;
                 // tempDialogueNode.NameCharacter = evt.newValue;
                 //tempDialogueNode.NameCharacter = evt.newValue;
+                tempDialogueNode.DialogueText = evt.newValue;
+                
 
             });
+            textFieldCharacter.RegisterValueChangedCallback(evt =>
+            { 
+                tempDialogueNode.NameCharacter = evt.newValue; 
+            });
+
+            
             /*
             textFieldCharacter.RegisterValueChangedCallback(evt =>
             {
                
             });
             */
-            
-            
 
-            textField.SetValueWithoutNotify(tempDialogueNode.title);
+
             textFieldCharacter.SetValueWithoutNotify(tempDialogueNode.NameCharacter);
-            SpriteCharacterDefault = tempDialogueNode.SpriteCharacter;
+            textField.SetValueWithoutNotify(tempDialogueNode.title);
+           // SpriteCharacterDefault = tempDialogueNode.SpriteCharacter;
+          
             tempDialogueNode.mainContainer.Add(textField);
             tempDialogueNode.mainContainer.Add(textFieldCharacter);
 

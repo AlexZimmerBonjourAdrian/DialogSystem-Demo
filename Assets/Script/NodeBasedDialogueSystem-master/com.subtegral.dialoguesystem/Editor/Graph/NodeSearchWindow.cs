@@ -13,13 +13,13 @@ namespace Subtegral.DialogueSystem.Editor
     {
         private EditorWindow _window;
         private StoryGraphView _graphView;
-        private Sprite _CharacterSprite;
+        private Texture2D _CharacterSprite;
         private Texture2D _indentationIcon;
         
 
          private void Start()
         {
-            _CharacterSprite = Resources.Load<Sprite>("Prefab / DefaultSprite ");
+            _CharacterSprite = Resources.Load<Texture2D>("Prefab / DefaultSprite ");
         }
         public void Configure(EditorWindow window,StoryGraphView graphView)
         {

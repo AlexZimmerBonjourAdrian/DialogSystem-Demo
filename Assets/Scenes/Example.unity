@@ -945,7 +945,7 @@ GameObject:
   - component: {fileID: 584172524}
   - component: {fileID: 584172523}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: NameCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1018,15 +1018,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1067,7 +1067,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 584172521}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1 &819377329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,9 +1657,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4060772755159618262}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ccaca0d7c48634d8e70996696a3c4d, type: 3}
+  m_Script: {fileID: 11500000, guid: f1579c0e35890a34c90541c218199b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameCharacter: {fileID: 584172523}
   dialogue: {fileID: 11400000, guid: dd2ea9c704c5ba9408e6dafac21c53f9, type: 2}
   dialogueText: {fileID: 133969042}
   choicePrefab: {fileID: 3102500559854669817, guid: f22ca3dc614d01d43ac4fa237129bc82,

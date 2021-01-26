@@ -7,9 +7,10 @@ namespace Subtegral.DialogueSystem.DataContainers
     public class DialogueNodeData
     {
         public string NodeGUID;
-        public string DialogueText;
-        public Sprite SpriteCharacter;
-        public Vector2 Position;
         public string nameCharacter;
+        public string DialogueText;
+        public Texture2D SpriteCharacter;
+        public Vector2 Position;
+       
     }
 }

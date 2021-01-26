@@ -12,7 +12,7 @@ namespace Subtegral.DialogueSystem.Runtime
 {
     public class CDialogueLoopDialogue : MonoBehaviour
 {
-
+    [SerializeField] private TextMeshProUGUI nameCharacter;
     [SerializeField] private DialogueContainer dialogue;
     [SerializeField] private TextMeshProUGUI dialogueText;
     [SerializeField] private Button choicePrefab;
@@ -20,6 +20,7 @@ namespace Subtegral.DialogueSystem.Runtime
 
     private void Start()
     {
+        
         var narrativeData = dialogue.NodeLinks.First(); //Entrypoint node
         ProceedToNarrative(narrativeData.TargetNodeGUID);
     }
@@ -27,8 +28,11 @@ namespace Subtegral.DialogueSystem.Runtime
     private void ProceedToNarrative(string narrativeDataGUID)
     {
         var text = dialogue.DialogueNodeData.Find(x => x.NodeGUID == narrativeDataGUID).DialogueText;
+        var textcharacter = dialogue.DialogueNodeData.Find(x => x.NodeGUID == narrativeDataGUID).nameCharacter;
         var choices = dialogue.NodeLinks.Where(x => x.BaseNodeGUID == narrativeDataGUID);
+        nameCharacter.text = ProcessProperties(textcharacter);
         dialogueText.text = ProcessProperties(text);
+     
         var buttons = buttonContainer.GetComponentsInChildren<Button>();
         for (int i = 0; i < buttons.Length; i++)
         {
