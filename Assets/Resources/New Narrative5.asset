@@ -27,8 +27,8 @@ MonoBehaviour:
     TargetNodeGUID: 6c713152-cf03-440e-9c2a-216d101e9be7
   DialogueNodeData:
   - NodeGUID: 40276d40-3c2a-4580-acd8-c079d8a2d56e
-    nameCharacter: sda
-    DialogueText: arturss
+    nameCharacter: name Character1
+    DialogueText: sada
     SpriteCharacter: {fileID: 0}
     Position: {x: 274, y: 177}
   - NodeGUID: ed962ca1-f52b-4fca-afb1-d11cd7cbe926
@@ -37,12 +37,12 @@ MonoBehaviour:
     SpriteCharacter: {fileID: 0}
     Position: {x: 697, y: 237}
   - NodeGUID: 6c713152-cf03-440e-9c2a-216d101e9be7
-    nameCharacter: 
+    nameCharacter: Loop
     DialogueText: Necesito que me des consejos amorosos es... para un amigo
     SpriteCharacter: {fileID: 0}
     Position: {x: 635, y: 372}
   - NodeGUID: 31f8abb4-01e3-4eb6-9592-bbd123e20313
-    nameCharacter: 
+    nameCharacter: Moffin
     DialogueText: Me alegro que estes bien mama, te quiero mucho
     SpriteCharacter: {fileID: 0}
     Position: {x: 668, y: 44}
